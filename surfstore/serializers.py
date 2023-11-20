@@ -28,7 +28,12 @@ class PraiaSerializer(serializers.ModelSerializer):
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
-        fields = '__all__'
+        fields = ['nome', 'idade','telefone', 'praia']
+
+class ClienteSerializerV2(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
+        fields = ['nome', 'cidade','idade','telefone', 'praia']
 
 class ComprasSerializer(serializers.ModelSerializer):
     class Meta:

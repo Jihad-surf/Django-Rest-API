@@ -30,6 +30,7 @@ class Cliente(models.Model):
     idade = models.IntegerField()
     telefone = models.CharField(max_length=20, default='0000000')
     praia = models.ForeignKey(Praia, on_delete=models.DO_NOTHING)
+    cidade = models.CharField(max_length=50, default="")
 
 class Compra(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.DO_NOTHING)
