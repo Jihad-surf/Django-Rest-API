@@ -2,7 +2,7 @@ from rest_framework import viewsets, generics, filters
 from surfstore.models import Praia,Prancha, Cliente, Compra
 from surfstore.serializers import PraiaSerializer,PranchaSerializer, ClienteSerializer, ComprasSerializer,ComprasClienteSerializer, ClienteSerializerV2
 from rest_framework.authentication import BasicAuthentication
-from rest_framework.permissions import IsAuthenticated 
+from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
 from django_filters.rest_framework import DjangoFilterBackend
 
 class PranchaViewSet(viewsets.ModelViewSet):
@@ -13,7 +13,10 @@ class PranchaViewSet(viewsets.ModelViewSet):
     serializer_class = PranchaSerializer
     # nao fica publica, para ter acesso precisa fazer login
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+
+    # configurando os metodos que um endpoint pode ter, essa config vai para todos os usuarios
+    http_method_names = ['get', 'post', 'put','path'] #'delete'
 
     # configura os filtros e ordenação
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]

@@ -30,7 +30,15 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE' : 2,
-    'DEFAULT_VERSIONING_CLASS' : 'rest_framework.versioning.QueryParameterVersioning'
+    'DEFAULT_VERSIONING_CLASS' : 'rest_framework.versioning.QueryParameterVersioning',
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '10/day',
+        'user': '1000/day'
+    }
 }
 
 MIDDLEWARE = [
