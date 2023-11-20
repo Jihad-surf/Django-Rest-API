@@ -36,6 +36,7 @@ class ComprasSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ComprasClienteSerializer(serializers.ModelSerializer):
+    # ao invez de mostrar o id do cliente e o id da prancha que o cliente comprou mostra o nome
     cliente = serializers.CharField(source='cliente.nome', read_only=True)
     prancha = serializers.CharField(source='prancha.nome', read_only=True)
     class Meta:
